@@ -11,8 +11,7 @@ import java.util.List;
 public class MyBot extends TelegramLongPollingBot {
 
 
-    public MyBotService myBotService;
-    private String username;
+    private final MyBotService myBotService;
 
     public MyBot(MyBotService myBotService) {
         this.myBotService = myBotService;
@@ -24,6 +23,7 @@ public class MyBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String message = update.getMessage().getText();
             Long chatId = update.getMessage().getChatId();
+            String username = update.getMessage().getFrom().getUserName();
 
             Info(chatId, username, message);
             if (message.equals("/start")) {
